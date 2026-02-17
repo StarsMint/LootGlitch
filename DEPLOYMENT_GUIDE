@@ -1,0 +1,324 @@
+# 🚀 LootGlitch Deployment Guide
+
+## 📋 Pre-Deployment Checklist
+
+### 1. Telegram Bot Setup ✅
+- [ ] Create bot via @BotFather
+- [ ] Save bot token
+- [ ] Get your Telegram ID (use @userinfobot)
+- [ ] Create group/channel for database storage
+- [ ] Get group ID
+- [ ] Add bot to group as admin
+
+### 2. Domain Setup (Optional)
+- [ ] Purchase domain (lootglitch.me)
+- [ ] Configure DNS settings
+- [ ] Point to Render deployment
+
+### 3. Adsterra Account
+- [ ] Sign up at adsterra.com
+- [ ] Create banner ad (728x90)
+- [ ] Create SmartLink
+- [ ] Save ad IDs
+
+## 🌐 Deployment on Render.com
+
+### Step 1: Create Account
+1. Go to [render.com](https://render.com)
+2. Sign up with GitHub
+
+### Step 2: New Web Service
+1. Click "New +"
+2. Select "Web Service"
+3. Connect GitHub repository
+
+### Step 3: Configure Service
+```
+Name: lootglitch
+Environment: Node
+Region: Choose closest to target audience
+Branch: main
+Build Command: npm install
+Start Command: npm start
+```
+
+### Step 4: Environment Variables
+Add these in Render dashboard:
+
+```env
+NODE_ENV=production
+PORT=3000
+
+# Telegram (REQUIRED)
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_ADMIN_ID=your_telegram_id_here
+TELEGRAM_GROUP_ID=your_group_id_here
+
+# Site Configuration
+SITE_URL=https://your-app.onrender.com
+SITE_NAME=LootGlitch
+
+# Adsterra (Optional - add later)
+ADSTERRA_BANNER_ID=your_banner_id
+ADSTERRA_SMARTLINK_ID=your_smartlink_id
+
+# Revenue Settings
+BASE_CPM=2.5
+REFERRAL_MULTIPLIER=0.15
+```
+
+### Step 5: Deploy
+1. Click "Create Web Service"
+2. Wait for build to complete (2-5 minutes)
+3. Your app will be live at: `https://lootglitch.onrender.com`
+
+## 🎯 Post-Deployment Tasks
+
+### 1. Test Telegram Bot
+```
+1. Open Telegram
+2. Start chat with your bot
+3. Send /stats command
+4. Should receive statistics
+```
+
+### 2. Test Registration
+```
+1. Visit your site
+2. Click user icon
+3. Register new account
+4. Check Telegram bot for confirmation
+```
+
+### 3. Test Claim Flow
+```
+1. Login to site
+2. Select a game
+3. Choose reward amount
+4. Click claim
+5. Verify troll popup appears
+6. Test referral link generation
+```
+
+### 4. Configure Custom Domain (Optional)
+
+#### On Render:
+1. Go to Settings
+2. Click "Custom Domain"
+3. Add: lootglitch.me
+4. Copy provided values
+
+#### On Domain Registrar:
+1. Add CNAME record:
+   - Host: @
+   - Value: [from Render]
+2. Wait for DNS propagation (up to 48 hours)
+
+### 5. Add Real Adsterra Ads
+
+#### In index.html:
+Replace placeholder with actual Adsterra code:
+
+```html
+<!-- Banner Ad -->
+<div class="ad-container banner-ad">
+    <!-- Replace this with Adsterra banner code -->
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'YOUR_BANNER_KEY',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.topcreativeformat.com/YOUR_BANNER_KEY/invoke.js"></script>
+</div>
+```
+
+#### In app.js:
+Update SmartLink function:
+
+```javascript
+async showSmartLink() {
+    // Replace with actual SmartLink
+    const smartLink = 'https://yoursmartlink.com';
+    window.open(smartLink, '_blank');
+    return new Promise(resolve => setTimeout(resolve, 1000));
+}
+```
+
+### 6. Submit to Google Search Console
+
+#### Setup:
+1. Go to [search.google.com/search-console](https://search.google.com/search-console)
+2. Add property: lootglitch.me
+3. Verify ownership via DNS
+
+#### Submit Sitemap:
+1. In Search Console
+2. Go to Sitemaps
+3. Submit: https://lootglitch.me/sitemap.xml
+
+### 7. Enable Google Analytics (Optional)
+
+Add to `<head>` in index.html:
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+## 🔄 Auto-Deploy Setup
+
+### GitHub Actions (Optional)
+Create `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy to Render
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Trigger Render Deploy
+        run: |
+          curl https://api.render.com/deploy/YOUR_HOOK_ID
+```
+
+## 📊 Monitoring
+
+### Check Logs on Render:
+1. Go to your service
+2. Click "Logs" tab
+3. Monitor for errors
+
+### Telegram Admin Commands:
+- `/stats` - View statistics
+- `/ban username` - Ban user
+- `/unban username` - Unban user
+
+## 🐛 Troubleshooting
+
+### Site Not Loading:
+```bash
+# Check build logs on Render
+# Verify all environment variables are set
+# Check Node.js version compatibility
+```
+
+### Telegram Bot Not Working:
+```bash
+# Verify bot token is correct
+# Check admin ID matches your Telegram user ID
+# Ensure bot is admin in group
+# Check internet connectivity
+```
+
+### Database Issues:
+```bash
+# Verify Telegram group ID is correct
+# Check bot has write permissions
+# Monitor Telegram messages for errors
+```
+
+### Free Tier Sleep:
+Render free tier sleeps after 15 minutes of inactivity.
+
+**Solutions:**
+1. Upgrade to paid tier ($7/month)
+2. Use external ping service:
+   - UptimeRobot.com (free)
+   - Add your site URL
+   - Set interval to 5 minutes
+
+## 📈 SEO Optimization
+
+### 1. Submit to Search Engines
+- Google: search.google.com/search-console
+- Bing: webmaster.bing.com
+- Yandex: webmaster.yandex.com
+
+### 2. Build Backlinks
+- Social media posts
+- Gaming forums
+- Reddit (r/gaming, r/FreeGames)
+- Discord servers
+
+### 3. Content Strategy
+- Add blog section
+- Write gaming guides
+- Create video tutorials
+- Engage with community
+
+## 💰 Monetization Optimization
+
+### 1. Track Performance
+```javascript
+// Add to your tracking
+{
+    clicks: total_clicks,
+    conversions: total_conversions,
+    revenue: total_revenue,
+    ctr: click_through_rate
+}
+```
+
+### 2. A/B Testing
+- Test different reward amounts
+- Try various ad placements
+- Experiment with referral requirements
+
+### 3. Optimize CPM
+- Monitor Adsterra dashboard
+- Adjust based on geography
+- Test different ad formats
+
+## 🔒 Security Best Practices
+
+### 1. Environment Variables
+- Never commit .env to Git
+- Rotate tokens periodically
+- Use strong admin passwords
+
+### 2. Rate Limiting
+- Already implemented (100 req/15min)
+- Monitor for abuse
+- Ban suspicious users
+
+### 3. Regular Updates
+```bash
+# Update dependencies monthly
+npm update
+npm audit fix
+```
+
+## 📞 Support
+
+### Issues:
+- GitHub Issues
+- Telegram: @LootGlitchBot
+- Email: support@lootglitch.me
+
+### Resources:
+- [Render Docs](https://render.com/docs)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
+- [Adsterra Help](https://adsterra.com/help/)
+
+---
+
+## ✅ Deployment Complete!
+
+Your LootGlitch platform is now live and ready to troll... I mean, serve users! 😂🎮
+
+Good luck with your project! 🚀
