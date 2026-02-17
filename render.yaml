@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: lootglitch
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ADMIN_ID
+        sync: false
+      - key: TELEGRAM_GROUP_ID
+        sync: false
+      - key: SITE_URL
+        value: https://lootglitch.me
+      - key: SITE_NAME
+        value: LootGlitch
+      - key: BASE_CPM
+        value: 2.5
+      - key: REFERRAL_MULTIPLIER
+        value: 0.15
