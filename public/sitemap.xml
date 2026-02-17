@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://lootglitch.me/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Fortnite Free V-Bucks -->
+    <url>
+        <loc>https://lootglitch.me/fortnite-free-vbucks</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- COD Free Points -->
+    <url>
+        <loc>https://lootglitch.me/call-of-duty-free-cod-points</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Roblox Free Robux -->
+    <url>
+        <loc>https://lootglitch.me/roblox-free-robux</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- PUBG Mobile Free UC -->
+    <url>
+        <loc>https://lootglitch.me/pubg-mobile-free-uc</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Valorant Free VP -->
+    <url>
+        <loc>https://lootglitch.me/valorant-free-valorant-points</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Minecraft Free Minecoins -->
+    <url>
+        <loc>https://lootglitch.me/minecraft-free-minecoins</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Genshin Impact Free Crystals -->
+    <url>
+        <loc>https://lootglitch.me/genshin-impact-free-genesis-crystals</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Apex Legends Free Coins -->
+    <url>
+        <loc>https://lootglitch.me/apex-legends-free-apex-coins</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Free Fire Free Diamonds -->
+    <url>
+        <loc>https://lootglitch.me/free-fire-free-diamonds</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+    <!-- Mobile Legends Free Diamonds -->
+    <url>
+        <loc>https://lootglitch.me/mobile-legends-free-diamonds</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <lastmod>2026-02-17</lastmod>
+    </url>
+    
+</urlset>
